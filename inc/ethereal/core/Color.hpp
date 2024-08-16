@@ -1,26 +1,30 @@
 #pragma once
 
-struct Color
+namespace Ethereal::Core
 {
-    float r;
-    float g;
-    float b;
-    float a = 1.0f;
-
-    Color()
+    struct Color
     {
-        r = 0.0f;
-        g = 0.0f;
-        b = 0.0f;
-    }
+        float r;
+        float g;
+        float b;
+        float a = 1.0f;
 
-    Color(float r, float g, float b, float a = 1.0f)
-    {
-        this->r = r;
-        this->g = g;
-        this->b = b;
-        this->a = a;
-    }
-};
+    public:
+        Color()
+        {
+            r = 0.0f;
+            g = 0.0f;
+            b = 0.0f;
+        }
 
-typedef Color Colour; // Alias for Color
+        Color(float r, float g, float b, float a = 1.0f)
+        {
+            this->r = r;
+            this->g = g;
+            this->b = b;
+            this->a = a;
+        }
+    };
+
+    typedef Color Colour; // Alias for Color
+}

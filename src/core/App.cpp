@@ -4,6 +4,8 @@
 #include <cstdlib>
 #include <stdexcept>
 
+using namespace Ethereal::Core;
+
 App::App()
 {
     if(SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -61,6 +63,7 @@ void App::update_windows()
     {
         Window::set_active_window(window);
         window->clear();
+        window->execute();
         window->update();
     }
 }

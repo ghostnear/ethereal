@@ -2,21 +2,24 @@
 
 #include <vector>
 
-#include "../system/Window.hpp"
+#include "Window.hpp"
 
-class App
+namespace Ethereal::Core
 {
-private:
-    bool m_running;
-    std::vector<Window*> m_windows;
+    class App
+    {
+    private:
+        bool m_running;
+        std::vector<Window*> m_windows;
 
-    void poll_events();
-    void update_windows();
+        void poll_events();
+        void update_windows();
 
-public:
-    App();
+    public:
+        App();
 
-    App& add_window(Window* window);
+        App& add_window(Window*);
 
-    int run();
-};
+        int run();
+    };
+}

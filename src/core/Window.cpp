@@ -1,7 +1,9 @@
-#include "system/Window.hpp"
+#include "core/Window.hpp"
 
 #include <format>
 #include <stdexcept>
+
+using namespace Ethereal::Core;
 
 Window* Window::m_activeWindow = nullptr;
 
@@ -27,7 +29,7 @@ Window::Window(WindowConfig& config)
 
     // Create OpenGL context.
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
     m_context = SDL_GL_CreateContext(m_window);
     if(m_context == nullptr)
@@ -55,6 +57,13 @@ Window::~Window()
         SDL_DestroyWindow(m_window);
 }
 
+Window& Window::set_state(State* state)
+{
+    delete m_state;
+    m_state = state;
+    return *this;
+}
+
 int Window::get_ID()
 {
     return SDL_GetWindowID(m_window);
@@ -65,6 +74,11 @@ void Window::clear()
     SDL_GL_MakeCurrent(m_window, m_context);
     glClear(GL_COLOR_BUFFER_BIT);
     glClearColor(background_color.r, background_color.g, background_color.b, background_color.a);
+}
+
+void Window::execute()
+{
+    m_state->update();
 }
 
 void Window::update()

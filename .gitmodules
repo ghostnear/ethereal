@@ -1,0 +1,3 @@
+[submodule "lib/ginseng"]
+	path = lib/ginseng
+	url = https://github.com/apples/ginseng.git
